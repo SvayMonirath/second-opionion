@@ -69,22 +69,29 @@ SecondOpinion is **not** meant for routine, day-to-day coding tasks. Use it wher
 
 ```mermaid
 flowchart TD
-    A["What are you working on?"] --> B{"Is it routine, low-risk code?"}
+    Start["What are you working on?"] --> CheckRoutine{"Is it routine, low-risk code?"}
     
-    B -- "YES: Writing a function, regex, CSS button, or fixing a typo" --> C["Use Normal AI\n(SecondOpinion is unnecessary overhead here)"]
+    CheckRoutine -- "YES: Typo, CSS tweak, simple function" --> Solo["Use Normal AI Assistant\n(SecondOpinion is unnecessary overhead here)"]
     
-    B -- "NO: Making an architectural or business bet" --> D{"What is the decision?"}
+    CheckRoutine -- "NO: High-stakes technical decision" --> RouteType{"What kind of decision?"}
     
-    D -- "Picking a database, auth model, or cloud infra" --> E["Run: /second-opinion-challenge\n(Hunts for edge cases and failure points)"]
-    D -- "Stuck between 2-3 technical options" --> F["Run: /second-opinion-paths\n(Compares working alternatives with trade-offs)"]
-    D -- "High-stakes architectural review" --> G["Run: /second-opinion-swarm\n(Launches 3 independent subagents in private contexts)"]
-    D -- "Testing a startup feature or pricing idea" --> H["Run: /second-opinion-product\n(Tests unit economics and real user demand)"]
+    RouteType -- "Database, Auth, Cloud Infra" --> RedTeam["Run: /second-opinion-challenge\n(Hunts for fatal flaws and edge cases)"]
+    RouteType -- "Choosing between 2–3 options" --> Paths["Run: /second-opinion-paths\n(Compares trade-offs side-by-side)"]
+    RouteType -- "Core Architecture Review" --> Swarm["Run: /second-opinion-swarm\n(Blind 3-agent peer review panel)"]
+    RouteType -- "Product Pricing or Feature Bet" --> Product["Run: /second-opinion-product\n(Validates unit economics & user demand)"]
     
-    style C fill:#21262d,stroke:#30363d,color:#8b949e
-    style E fill:#1f6feb,stroke:#388bfd,color:#ffffff
-    style F fill:#238636,stroke:#2ea043,color:#ffffff
-    style G fill:#da3633,stroke:#f85149,color:#ffffff
-    style H fill:#8957e5,stroke:#a371f7,color:#ffffff
+    classDef default fill:#111827,stroke:#374151,color:#f3f4f6;
+    classDef neutral fill:#1f2937,stroke:#4b5563,color:#9ca3af;
+    classDef accent fill:#0f172a,stroke:#3b82f6,color:#60a5fa;
+    classDef success fill:#064e3b,stroke:#059669,color:#6ee7b7;
+    classDef danger fill:#450a0a,stroke:#dc2626,color:#fca5a5;
+    classDef purple fill:#3b0764,stroke:#9333ea,color:#d8b4fe;
+    
+    class Solo neutral;
+    class RedTeam danger;
+    class Paths success;
+    class Swarm accent;
+    class Product purple;
 ```
 
 ---
@@ -95,30 +102,30 @@ When you run `/second-opinion` on a high-stakes proposal, it executes a 4-stage 
 
 ```mermaid
 flowchart TD
-    A["Your Proposal or Technical Dilemma\n(e.g., 'Should we use MongoDB for billing & inventory?')"] --> B["1. The Anti-Sycophancy Filter\n(Refuses to validate unproven premises)"]
+    UserQuery["Your Proposal or Technical Dilemma\n(e.g., 'Should we use MongoDB for billing & inventory?')"] --> Filter["1. Anti-Sycophancy Filter\n(Refuses to validate unproven premises)"]
     
-    B --> C{"Does this plan have hidden traps?"}
+    Filter --> Engine["2. Adversarial Review Engine"]
     
-    C -- "YES: Challenges failure modes" --> D["2. Adversarial Review Engine"]
-    
-    subgraph D ["Specialized Sanity Checks"]
-        D1["Security & Compliance\n(SOC 2, XSS, Token leaks)"]
-        D2["Data & Concurrency\n(Race conditions, ACID, Invariants)"]
-        D3["Cloud & Financial Costs\n(Serverless bills, Support drain)"]
-        D4["Downstream Maintenance\n(Developer hours, Tech debt)"]
+    subgraph Engine ["Specialized Sanity Checks"]
+        C1["Security & Compliance\n(SOC 2, XSS, Token leaks)"]
+        C2["Data & Concurrency\n(Race conditions, ACID, Invariants)"]
+        C3["Cloud & Financial Costs\n(Serverless bills, Support drain)"]
+        C4["Downstream Maintenance\n(Developer hours, Tech debt)"]
     end
     
-    D --> E["3. Senior Verdict & Concrete Fix"]
+    Engine --> Verdict["3. Senior Verdict & Concrete Fix"]
     
-    E --> F["Clear Go / No-Go Decision\n(Pulls the brake on flawed plans)"]
-    E --> G["Concrete Drop-in Solution\n(Drop-in code, Architecture roadmap, Trade-off matrix)"]
+    Verdict --> OutcomeA["Clear Go / No-Go Decision\n(Pulls the brake on flawed plans)"]
+    Verdict --> OutcomeB["Drop-in Solution\n(Production code, Architecture roadmap)"]
     
-    style B fill:#1f6feb,stroke:#388bfd,color:#ffffff
-    style C fill:#d29922,stroke:#f1e05a,color:#000000
-    style D fill:#161b22,stroke:#30363d,color:#c9d1d9
-    style E fill:#238636,stroke:#2ea043,color:#ffffff
-    style F fill:#da3633,stroke:#f85149,color:#ffffff
-    style G fill:#238636,stroke:#2ea043,color:#ffffff
+    classDef default fill:#111827,stroke:#374151,color:#f3f4f6;
+    classDef step fill:#0f172a,stroke:#2563eb,color:#93c5fd;
+    classDef sub fill:#0b0f17,stroke:#1e293b,color:#cbd5e1;
+    classDef resolve fill:#064e3b,stroke:#059669,color:#a7f3d0;
+    
+    class Filter step;
+    class Engine,C1,C2,C3,C4 sub;
+    class Verdict,OutcomeA,OutcomeB resolve;
 ```
 
 ---
@@ -137,22 +144,23 @@ You only need to remember `/second-opinion`. It routes your question automatical
 
 ---
 
-## Local Installation in Antigravity / Gemini
+## Universal Multi-Agent Support & Installation
 
-Skills are registered via symlinks into:
-- `~/.gemini/config/skills/`
-- `~/.gemini/antigravity-cli/skills/`
-- `~/.agents/skills/`
+SecondOpinion is built on the universal open skill protocol. It runs across all major AI coding assistants and runtimes:
 
-Because the installation uses symlinks to your local Git repository, running `git pull` in this folder immediately updates all skills in your AI runtime with zero re-installation needed:
+- **Claude Code** (`~/.claude/skills/`)
+- **Antigravity & Gemini CLI** (`~/.gemini/antigravity-cli/skills/`, `~/.gemini/config/skills/`)
+- **Cursor & Windsurf** (`~/.agents/skills/`)
+- **OpenCode & Codex CLI**
+
+### One-Command Setup
+
+Clone the repository and run the universal installer:
 
 ```bash
+git clone https://github.com/SvayMonirath/second-opionion.git ~/Developer/second-opinion
 cd ~/Developer/second-opinion
-git pull
+./scripts/install.sh
 ```
 
----
-
-## License
-
-MIT License. Designed for evidence-led engineering and honest decision-making.
+Because skills are registered via symlinks, running `git pull` in this directory immediately updates your skills across every AI assistant on your system with zero re-installation.
