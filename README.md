@@ -52,26 +52,29 @@ You only need to remember `/second-opinion`. It routes tasks automatically. You 
 ```text
 .
 ├── README.md
+├── CHANGELOG.md
+├── DESIGN_AUDIT.md
+├── FILE_INVENTORY.md
+├── MANIFEST.md
 ├── .gitignore
-└── agentcollab-resource-pack/
-    ├── README.md
-    ├── CHANGELOG.md
-    ├── FILE_INVENTORY.md
-    ├── evaluation/
-    └── skills/
-        ├── second-opinion/             # Universal router, shared references & templates
-        ├── second-opinion-swarm/       # Blind subagent review protocol
-        ├── second-opinion-challenge/   # Falsification & red-teaming
-        ├── second-opinion-paths/       # Architectural alternatives
-        ├── second-opinion-audit/       # Acceptance criteria auditing
-        ├── second-opinion-perspectives/# Single-agent multi-lens analysis
-        ├── second-opinion-engineering/ # Code & architecture shortcut
-        ├── second-opinion-security/    # Threat modeling shortcut
-        ├── second-opinion-research/    # Evidence & fact-checking shortcut
-        ├── second-opinion-product/     # Product & UX shortcut
-        ├── second-opinion-decision/    # Trade-off evaluation shortcut
-        ├── second-opinion-connect/     # Local/remote tool discovery
-        └── second-opinion-external/    # Cross-model external collaboration
+├── evaluation/
+│   ├── acceptance-tests.md
+│   ├── scorecard.md
+│   └── test-cases.md
+└── skills/
+    ├── second-opinion/             # Universal router, shared references & templates
+    ├── second-opinion-swarm/       # Blind subagent review protocol
+    ├── second-opinion-challenge/   # Falsification & red-teaming
+    ├── second-opinion-paths/       # Architectural alternatives
+    ├── second-opinion-audit/       # Acceptance criteria auditing
+    ├── second-opinion-perspectives/# Single-agent multi-lens analysis
+    ├── second-opinion-engineering/ # Code & architecture shortcut
+    ├── second-opinion-security/    # Threat modeling shortcut
+    ├── second-opinion-research/    # Evidence & fact-checking shortcut
+    ├── second-opinion-product/     # Product & UX shortcut
+    ├── second-opinion-decision/    # Trade-off evaluation shortcut
+    ├── second-opinion-connect/     # Local/remote tool discovery
+    └── second-opinion-external/    # Cross-model external collaboration
 ```
 
 ---
