@@ -38,14 +38,14 @@ SecondOpinion is **not** meant for routine, day-to-day coding tasks. Use it wher
 flowchart TD
     A["What are you working on?"] --> B{"Is it routine, low-risk code?"}
     
-    B -- "YES: Writing a function, regex, CSS button, or fixing a typo" --> C["Use Normal AI<br/>(SecondOpinion is unnecessary overhead here)"]
+    B -- "YES: Writing a function, regex, CSS button, or fixing a typo" --> C["Use Normal AI\n(SecondOpinion is unnecessary overhead here)"]
     
     B -- "NO: Making an architectural or business bet" --> D{"What is the decision?"}
     
-    D -- "Picking a database, auth model, or cloud infra" --> E["Run: /second-opinion-challenge<br/>(Hunts for edge cases and failure points)"]
-    D -- "Stuck between 2-3 technical options" --> F["Run: /second-opinion-paths<br/>(Compares working alternatives with trade-offs)"]
-    D -- "High-stakes architectural review" --> G["Run: /second-opinion-swarm<br/>(Launches 3 independent subagents in private contexts)"]
-    D -- "Testing a startup feature or pricing idea" --> H["Run: /second-opinion-product<br/>(Tests unit economics and real user demand)"]
+    D -- "Picking a database, auth model, or cloud infra" --> E["Run: /second-opinion-challenge\n(Hunts for edge cases and failure points)"]
+    D -- "Stuck between 2-3 technical options" --> F["Run: /second-opinion-paths\n(Compares working alternatives with trade-offs)"]
+    D -- "High-stakes architectural review" --> G["Run: /second-opinion-swarm\n(Launches 3 independent subagents in private contexts)"]
+    D -- "Testing a startup feature or pricing idea" --> H["Run: /second-opinion-product\n(Tests unit economics and real user demand)"]
     
     style C fill:#21262d,stroke:#30363d,color:#8b949e
     style E fill:#1f6feb,stroke:#388bfd,color:#ffffff
@@ -62,23 +62,23 @@ When you run `/second-opinion` on a high-stakes proposal, it executes a 4-stage 
 
 ```mermaid
 flowchart TD
-    A["Your Proposal or Technical Dilemma<br/>(e.g., 'Should we use MongoDB for billing & inventory?')"] --> B["1. The Anti-Sycophancy Filter<br/>(Refuses to validate unproven premises)"]
+    A["Your Proposal or Technical Dilemma\n(e.g., 'Should we use MongoDB for billing & inventory?')"] --> B["1. The Anti-Sycophancy Filter\n(Refuses to validate unproven premises)"]
     
     B --> C{"Does this plan have hidden traps?"}
     
     C -- "YES: Challenges failure modes" --> D["2. Adversarial Review Engine"]
     
     subgraph D ["Specialized Sanity Checks"]
-        D1["Security & Compliance<br/>(SOC 2, XSS, Token leaks)"]
-        D2["Data & Concurrency<br/>(Race conditions, ACID, Invariants)"]
-        D3["Cloud & Financial Costs<br/>(Serverless bills, Support drain)"]
-        D4["Downstream Maintenance<br/>(Developer hours, Tech debt)"]
+        D1["Security & Compliance\n(SOC 2, XSS, Token leaks)"]
+        D2["Data & Concurrency\n(Race conditions, ACID, Invariants)"]
+        D3["Cloud & Financial Costs\n(Serverless bills, Support drain)"]
+        D4["Downstream Maintenance\n(Developer hours, Tech debt)"]
     end
     
     D --> E["3. Senior Verdict & Concrete Fix"]
     
-    E --> F["Clear Go / No-Go Decision<br/>(Pulls the brake on flawed plans)"]
-    E --> G["Concrete Drop-in Solution<br/>(Drop-in code, Architecture roadmap, Trade-off matrix)"]
+    E --> F["Clear Go / No-Go Decision\n(Pulls the brake on flawed plans)"]
+    E --> G["Concrete Drop-in Solution\n(Drop-in code, Architecture roadmap, Trade-off matrix)"]
     
     style B fill:#1f6feb,stroke:#388bfd,color:#ffffff
     style C fill:#d29922,stroke:#f1e05a,color:#000000
